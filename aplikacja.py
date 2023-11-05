@@ -1,7 +1,6 @@
 from datetime import datetime
 import sqlite3
 from funkcje import *
-from db_sql import *
 
 
 while True:
