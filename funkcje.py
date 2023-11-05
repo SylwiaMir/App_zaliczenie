@@ -45,6 +45,16 @@ class BazaDanych:
         self.connection.commit()
         self.bd_rozlacz()
 
+def main_menu():
+	print("""Opcje:
+[1] - Dodaj wydatek
+[2] - Wyświetl wydatki
+[3] - Edytuj wydatki
+[4] - 
+[5] -
+[6] - Wyjście""")
+
+
 def wybor_daty():
     while True:
         data_str = input("Podaj datę w formacie DD-MM-RRRR: ")
