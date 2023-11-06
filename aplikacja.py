@@ -6,7 +6,7 @@ from funkcje import *
 while True:
 	
 	main_menu()
-	choice = int(input('Twój wybór:'))
+	choice = int(input('Twój wybór: '))
 
 	if choice == 1:
 		dodaj_wydatek()
@@ -21,7 +21,7 @@ while True:
 		print("opcja4")
 
 	elif choice == 5:
-		print("opcja5")
+		zaktualizuj_wydatki()
 		
 	elif choice == 6:
 		break
