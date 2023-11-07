@@ -55,7 +55,6 @@ class BazaDanych:
         self.connection.commit()
         self.bd_rozlacz()
 
-
 def main_menu():
 	print("""Opcje:
 [1] - Dodaj wydatek
@@ -82,7 +81,15 @@ def wybor_kategori():
 [4] - zdrowie i uroda
 [5] - odzież i obuwie
 [6] - pozostałe""")
-    choice = int(input('Twój wybór: '))
+
+    while True:
+        try:
+            choice = int(input('Twój wybór: '))
+            break
+        except ValueError:
+            print('Wybrano błędną wartość. Wybierz ponownie. ')
+            continue
+
     if choice == 1:
         kategoria = 'wydatki podstawowe'
     elif choice == 2:
@@ -116,27 +123,53 @@ def dodaj_wydatek():
     kategoria = wybor_kategori()
     bazadanych.dodaj_dane(nazwa_wydatku,kwota,data,kategoria)
     print(f"Dodano nowe dane: {nazwa_wydatku},{kwota},{data},{kategoria}")
+def wybor_id_do_edycji():
+    edytuj_id = None
+    while True:
+        try:
+            edytuj_id = int(input('Wybierz id wydatku do edycji: '))  # Identyfikator rekordu do edycji
+            return edytuj_id
+        except ValueError:
+            print('Wybrano błędną wartość. Wybierz ponownie. ')
+            continue
+def menu_edycji_danych():
+    choice = None
+    print("""Jakie dane chcesz zmienic? 
+    [1] - nazwa
+    [2] - kwota
+    [3] - data
+    [4] - kategoria
+    [5] - powrót""")
+
+    while True:
+        try:
+            choice = int(input('Twój wybór: '))
+            return choice
+        except ValueError:
+            print('Wybrano błędną wartość. Wybierz ponownie. ')
+            continue
 def edytuj_wydatki():
     bazadanych = BazaDanych("wydatki.db")
     bazadanych.utworz_bd()
 
-    edytuj_id = int(input('Wybierz id wydatku do edycji: ')) # Identyfikator rekordu do edycji
-    print("""Jakie dane chcesz zmienic? 
-[1] - nazwa
-[2] - kwota
-[3] - data
-[4] - kategoria""")
-    choice = int(input('Twój wybór: '))
+    edytuj_id = wybor_id_do_edycji()
+
+    choice = menu_edycji_danych()
+
+    #lista_wyboru =
+
     if choice == 1:
         nowa_nazwa = input('Podaj nową nazwe: ')
         bazadanych.update_nazwa(edytuj_id,nowa_nazwa)
         print(f"Zaktualizowano dane dla id {edytuj_id} na: {nowa_nazwa}")
+
     elif choice == 2:
         nowa_kwota = input('Podaj nową kwote: ')
         nowa_kwota = nowa_kwota.replace(',', '.')
         nowa_kwota = float(nowa_kwota)
         bazadanych.update_kwota(edytuj_id, nowa_kwota)
         print(f"Zaktualizowano dane dla id {edytuj_id} na: {nowa_kwota}")
+
     elif choice == 3:
         while True:
             nowa_data_str = input('Podaj nową date w formacie DD-MM-RRR: ')
@@ -149,6 +182,7 @@ def edytuj_wydatki():
 
         bazadanych.update_data(edytuj_id, nowa_data)
         print(f"Zaktualizowano dane dla id {edytuj_id} na: {nowa_data}")
+
     elif choice == 4:
         print("""Wybierz na którą kategorię zakupów chcesz zmienić:
 [1] - wydatki podstawowe
@@ -157,7 +191,13 @@ def edytuj_wydatki():
 [4] - zdrowie i uroda
 [5] - odzież i obuwie
 [6] - pozostałe""")
-        choice_2 = int(input('Twój wybór: '))
+        while True:
+            try:
+                choice_2 = int(input('Twój wybór: '))
+                break
+            except ValueError:
+                print('Wybrano błędną wartość. Wybierz ponownie. ')
+                continue
         if choice_2 == 1:
             nowa_kategoria = 'wydatki podstawowe'
         elif choice_2 == 2:
@@ -173,8 +213,11 @@ def edytuj_wydatki():
 
         bazadanych.update_kategoria(edytuj_id, nowa_kategoria)
         print(f"Zaktualizowano dane dla id {edytuj_id} na: {nowa_kategoria}")
+
+    elif choice == 5:
+        return
     else:
-        print("Wybierz ponownie")
+        print("Wybierz ponownie. ")
 
     
 def zaktualizuj_wydatki():

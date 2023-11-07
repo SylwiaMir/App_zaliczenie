@@ -6,7 +6,13 @@ from funkcje import *
 while True:
 	
 	main_menu()
-	choice = int(input('Twój wybór: '))
+	while True:
+		try:
+			choice = int(input('Twój wybór: '))
+			break
+		except ValueError:
+			print('Wybrano błędną wartość. Wybierz ponownie. ')
+			continue
 
 	if choice == 1:
 		dodaj_wydatek()
@@ -18,7 +24,7 @@ while True:
 		edytuj_wydatki()
 		
 	elif choice == 4:
-		print("opcja4")
+		print("opcja4 - tu ma powstac rozne sortowanie")
 
 	elif choice == 5:
 		zaktualizuj_wydatki()
@@ -27,4 +33,4 @@ while True:
 		break
 		
 	else:
-		print("Wybierz ponownie")
+		print("Wybrano błędną wartość. Wybierz ponownie. ")
