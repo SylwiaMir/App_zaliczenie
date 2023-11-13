@@ -24,10 +24,10 @@ while True:
 		edytuj_wydatki()
 		
 	elif choice == 4:
-		print("opcja4 - tu ma powstac rozne sortowanie")
+		sortowanie_wg_zakresu_dat()
 
 	elif choice == 5:
-		zaktualizuj_wydatki()
+		sortowanie_wg_miesiaca()
 		
 	elif choice == 6:
 		break

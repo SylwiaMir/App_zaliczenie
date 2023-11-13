@@ -55,13 +55,30 @@ class BazaDanych:
         self.connection.commit()
         self.bd_rozlacz()
 
+    def sortuj_wg_zakresu_dat(self, data_poczatkowa,data_koncowa):
+        self.bd_polacz()
+        self.cursor.execute("""SELECT * FROM wydatki WHERE data BETWEEN ? AND ? ORDER BY data """,
+                            (data_poczatkowa,data_koncowa))
+        rows = self.cursor.fetchall()
+        self.bd_rozlacz()
+        return rows
+    def sortuj_wg_miesiaca(self, rok, miesiac):
+        self.bd_polacz()
+        pierwszy_dzien_miesiaca = f'{rok:04d}-{miesiac:02d}-01'
+        ostatni_dzien_miesiaca = f'{rok:04d}-{miesiac:02d}-32'  # tworze str w formacie RRRR-MM-DD
+        self.cursor.execute("SELECT * FROM wydatki WHERE data BETWEEN ? AND ? ORDER BY data",
+                            (pierwszy_dzien_miesiaca, ostatni_dzien_miesiaca)) #zmienne wskakuja w miejsce znakow ?
+        rows = self.cursor.fetchall()
+        self.bd_rozlacz()
+        return rows
+
 def main_menu():
 	print("""Opcje:
 [1] - Dodaj wydatek
 [2] - Wyświetl wydatki
 [3] - Edytuj wydatki
-[4] - 
-[5] -
+[4] - Sortowanie wydatków według zakresu dat
+[5] - Sortowanie wydatków według miesiaca
 [6] - Wyjście""")
 def wybor_daty():
     while True:
@@ -156,8 +173,6 @@ def edytuj_wydatki():
 
     choice = menu_edycji_danych()
 
-    #lista_wyboru =
-
     if choice == 1:
         nowa_nazwa = input('Podaj nową nazwe: ')
         bazadanych.update_nazwa(edytuj_id,nowa_nazwa)
@@ -220,11 +235,44 @@ def edytuj_wydatki():
         print("Wybierz ponownie. ")
 
     
-def zaktualizuj_wydatki():
+def sortowanie_wg_zakresu_dat():
     bazadanych = BazaDanych("wydatki.db")
     bazadanych.utworz_bd()
-    
-    zaktualizowane_dane = bazadanych.wyswietl_dane()
-    print("Zaktualizowane dane:")
-    for row in zaktualizowane_dane:
+
+    print("Podaj date początkową")
+    data_poczatkowa = wybor_daty()
+    print("Podaj date końcową")
+    data_koncowa = wybor_daty()
+
+    sortowane_dane = bazadanych.sortuj_wg_zakresu_dat(data_poczatkowa, data_koncowa)
+
+    print(f"Paragony z okresu od {data_poczatkowa} do {data_koncowa}:")
+    for row in sortowane_dane:
+        print(row)
+def sortowanie_wg_miesiaca():
+    bazadanych = BazaDanych("wydatki.db")
+    bazadanych.utworz_bd()
+    while True:
+        try:
+            rok = input("Podaj rok w formacie RRRR: ")
+            if len(rok) != 4:
+                print("Błąd")
+                continue
+            else:
+                rok = int(rok)
+            break
+        except ValueError:
+            print('Wybrano błędną wartość. Wybierz ponownie. ')
+            continue
+    while True:
+        try:
+            miesiac = int(input("Podaj miesiac w formacie MM:"))
+            break
+        except ValueError:
+            print('Wybrano błędną wartość. Wybierz ponownie. ')
+            continue
+
+    sortowane_dane = bazadanych.sortuj_wg_miesiaca(rok,miesiac)
+
+    for row in sortowane_dane:
         print(row)
