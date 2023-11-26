@@ -1,6 +1,6 @@
 import sqlite3
 from datetime import datetime
-
+from App_zaliczenie.dane_uzytkowe import *
 class BazaDanych:
     def __init__(self, nazwa):
         self.nazwa = nazwa #Kod > BazaDanych("wydatki.db") w nawiasie ma nazwe do ktorej odnosza sie operacje wykonywane na bazie danych
@@ -54,7 +54,6 @@ class BazaDanych:
         self.cursor.execute("UPDATE wydatki SET kategoria = ? WHERE id = ?", (nowa_kategoria, id))
         self.connection.commit()
         self.bd_rozlacz()
-
     def sortuj_wg_zakresu_dat(self, data_poczatkowa,data_koncowa):
         self.bd_polacz()
         self.cursor.execute("""SELECT * FROM wydatki WHERE data BETWEEN ? AND ? ORDER BY data """,
@@ -71,15 +70,23 @@ class BazaDanych:
         rows = self.cursor.fetchall()
         self.bd_rozlacz()
         return rows
+    def suma_z_zakresu(self, data_poczatkowa, data_koncowa):
+        self.bd_polacz()
+        self.cursor.execute("SELECT SUM(kwota) FROM wydatki WHERE data BETWEEN ? AND ?",
+                            (data_poczatkowa, data_koncowa))
+        suma = self.cursor.fetchone()[0]  # Pobierz wynik sumy z kursora
+        self.bd_rozlacz()
+        return suma if suma is not None else 0
+    def suma_z_miesiaca(self, rok, miesiac):
+        self.bd_polacz()
+        pierwszy_dzien_miesiaca = f'{rok:04d}-{miesiac:02d}-01'
+        ostatni_dzien_miesiaca = f'{rok:04d}-{miesiac:02d}-32'  # tworze str w formacie RRRR-MM-DD
+        self.cursor.execute("SELECT SUM(kwota) FROM wydatki WHERE data BETWEEN ? AND ?",
+                            (pierwszy_dzien_miesiaca, ostatni_dzien_miesiaca))
+        suma = self.cursor.fetchone()[0]
+        self.bd_rozlacz()
+        return suma if suma is not None else 0
 
-def main_menu():
-	print("""Opcje:
-[1] - Dodaj wydatek
-[2] - Wyświetl wydatki
-[3] - Edytuj wydatki
-[4] - Sortowanie wydatków według zakresu dat
-[5] - Sortowanie wydatków według miesiaca
-[6] - Wyjście""")
 def wybor_daty():
     while True:
         data_str = input("Podaj datę w formacie DD-MM-RRRR: ")
@@ -233,9 +240,7 @@ def edytuj_wydatki():
         return
     else:
         print("Wybierz ponownie. ")
-
-    
-def sortowanie_wg_zakresu_dat():
+def sortuj_wg_zakresu_dat_menu():
     bazadanych = BazaDanych("wydatki.db")
     bazadanych.utworz_bd()
 
@@ -249,7 +254,7 @@ def sortowanie_wg_zakresu_dat():
     print(f"Paragony z okresu od {data_poczatkowa} do {data_koncowa}:")
     for row in sortowane_dane:
         print(row)
-def sortowanie_wg_miesiaca():
+def sortuj_wg_miesiaca_menu():
     bazadanych = BazaDanych("wydatki.db")
     bazadanych.utworz_bd()
     while True:
@@ -264,9 +269,15 @@ def sortowanie_wg_miesiaca():
         except ValueError:
             print('Wybrano błędną wartość. Wybierz ponownie. ')
             continue
+
     while True:
         try:
-            miesiac = int(input("Podaj miesiac w formacie MM:"))
+            miesiac = input("Podaj miesiac w formacie MM:")
+            if len(miesiac) != 2:
+                print("Błąd")
+                continue
+            else:
+                miesiac = int(miesiac)
             break
         except ValueError:
             print('Wybrano błędną wartość. Wybierz ponownie. ')
@@ -276,3 +287,47 @@ def sortowanie_wg_miesiaca():
 
     for row in sortowane_dane:
         print(row)
+def suma_z_zakresu_menu():
+    bazadanych = BazaDanych("wydatki.db")
+    bazadanych.utworz_bd()
+
+    print("Podaj date początkową")
+    data_poczatkowa = wybor_daty()
+    print("Podaj date końcową")
+    data_koncowa = wybor_daty()
+
+    suma = bazadanych.suma_z_zakresu(data_poczatkowa,data_koncowa)
+    print(f"Wydana kwota z okresu od {data_poczatkowa} do {data_koncowa} to: {suma}zł")
+def sortuj_wg_miesiaca_menu():
+    bazadanych = BazaDanych("wydatki.db")
+    bazadanych.utworz_bd()
+    while True:
+        try:
+            rok = input("Podaj rok w formacie RRRR: ")
+            if len(rok) != 4:
+                print("Błąd")
+                continue
+            else:
+                rok = int(rok)
+            break
+        except ValueError:
+            print('Wybrano błędną wartość. Wybierz ponownie. ')
+            continue
+
+    while True:
+        try:
+            miesiac = input("Podaj miesiac w formacie MM:")
+            if len(miesiac) != 2:
+                print("Błąd")
+                continue
+            else:
+                miesiac = int(miesiac)
+            break
+        except ValueError:
+            print('Wybrano błędną wartość. Wybierz ponownie. ')
+            continue
+
+    suma = bazadanych.suma_z_miesiaca(rok, miesiac)
+    nazwa_miesiaca = get_nazwa_miesiaca(miesiac)
+
+    print(f"Wydana kwota z miesiąca {nazwa_miesiaca} to: {suma}zł")

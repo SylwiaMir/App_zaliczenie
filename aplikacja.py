@@ -1,6 +1,5 @@
-from datetime import datetime
-import sqlite3
-from funkcje import *
+import tkinter as tk
+from class_BazaDanych import *
 
 
 while True:
@@ -24,11 +23,41 @@ while True:
 		edytuj_wydatki()
 		
 	elif choice == 4:
-		sortowanie_wg_zakresu_dat()
+		print("""Sortowanie według:
+[1] - miesiąca
+[2] - zakresu dat""")
+		while True:
+			try:
+				choice = int(input('Twój wybór: '))
+				break
+			except ValueError:
+				print('Wybrano błędną wartość. Wybierz ponownie. ')
+				continue
+		if choice == 1:
+			sortuj_wg_miesiaca_menu()
+		elif choice == 2:
+			sortuj_wg_zakresu_dat_menu()
+		else:
+			print("Wybrano błędną wartość. Wybierz ponownie. ")
 
 	elif choice == 5:
-		sortowanie_wg_miesiaca()
-		
+		print("""Suma według:
+[1] - miesiąca
+[2] - zakresu dat""")
+		while True:
+			try:
+				choice = int(input('Twój wybór: '))
+				break
+			except ValueError:
+				print('Wybrano błędną wartość. Wybierz ponownie. ')
+				continue
+		if choice == 1:
+			suma_z_miesiaca_menu()
+		elif choice == 2:
+			suma_z_zakresu_menu()
+		else:
+			print("Wybrano błędną wartość. Wybierz ponownie. ")
+
 	elif choice == 6:
 		break
 		
