@@ -1,5 +1,7 @@
 import customtkinter as ctk
 from class_BazaDanych import *
+from dodaj_wydatek_gui import *
+from funkcje import *
 window = ctk.CTk()
 window.title("Ogarniam wydatki")
 window.geometry("440x540")
@@ -17,7 +19,7 @@ main_manu_label = ctk.CTkLabel(main_manu,
 main_manu_label.grid(row=0, column=1, pady=(15,10))
 
 menu_buttons = [
-    ("Dodaj wydatek", dodaj_wydatek),
+    ("Dodaj wydatek", dodaj_wydatek_gui),
     ("Pokaż wydatki", pokaz_wydatki),
     ("Edytuj wydatki", edytuj_wydatki),
     ("Sortowanie", sortuj_wg_miesiaca_menu),

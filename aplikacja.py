@@ -1,6 +1,6 @@
 import tkinter as tk
 from class_BazaDanych import *
-
+from funkcje import *
 
 while True:
 	
