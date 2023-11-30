@@ -1,6 +1,6 @@
 import sqlite3
 from datetime import datetime
-from App_zaliczenie.dane_uzytkowe import *
+from dane_uzytkowe import *
 
 
 class BazaDanych:

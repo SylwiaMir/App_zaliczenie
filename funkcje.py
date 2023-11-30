@@ -1,5 +1,6 @@
 from class_BazaDanych import BazaDanych
 from datetime import datetime
+from dane_uzytkowe import *
 def wybor_daty():
     while True:
         data_str = input("Podaj datę w formacie DD-MM-RRRR: ")

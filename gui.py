@@ -1,22 +1,28 @@
-import customtkinter as ctk
-from class_BazaDanych import *
+import tkinter as tk
 from dodaj_wydatek_gui import *
 from funkcje import *
-window = ctk.CTk()
+from class_BazaDanych import *
+from class_Button import CustomButton
+from class_Label import CustomLabel, CustomLabelMainManu
+
+
+window = tk.Tk()
 window.title("Ogarniam wydatki")
-window.geometry("440x540")
-window.configure(fg_color='#333333')
+window.geometry("670x460")
+window.configure(bg='#333333')
 
-main_manu = ctk.CTkFrame(window, fg_color='#333333')
-main_manu.pack(padx=50, pady= 30)
 
-main_manu_label = ctk.CTkLabel(main_manu,
-                               text="Co robimy?",
-                               text_color='#04BFBF',
-                               fg_color='#333333',
-                               bg_color='#333333',
-                               font=ctk.CTkFont('Agenor Neue', 38, ))
-main_manu_label.grid(row=0, column=1, pady=(15,10))
+main_manu = tk.Frame(window, background='#333333')
+main_manu.configure(width=220, height=740)
+main_manu.pack(side=tk.LEFT, padx=15, pady=15)
+
+main_manu_label = CustomLabelMainManu(main_manu, text="Co robimy?")
+main_manu_label.grid(row=0, column=1, pady=(10,10))
+
+main_frame = tk.Frame(window, background='#333333', width=430, height=740) #bd=1, relief=tk.SOLID
+main_frame.pack(side=tk.LEFT, padx=20, pady=20)
+
+
 
 menu_buttons = [
     ("Dodaj wydatek", dodaj_wydatek_gui),
@@ -24,20 +30,11 @@ menu_buttons = [
     ("Edytuj wydatki", edytuj_wydatki),
     ("Sortowanie", sortuj_wg_miesiaca_menu),
     ("Suma wydatków", sortuj_wg_miesiaca_menu),
-    ("Wyjście", window.quit)]
+    ("Wyjście", window.destroy)]
 
 row_num = 1
 for text, command in menu_buttons:
-    button = ctk.CTkButton(master=main_manu,
-                           text=text,
-                           width=250,
-                           height=50,
-                           text_color='#333333',
-                           fg_color='#04BFBF',
-                           hover_color='#027D7D',
-                           corner_radius=4,
-                           font=ctk.CTkFont('Agenor Neue', 20),
-                           command=command)
+    button = CustomButton(master=main_manu, text=text, command=command)
     button.grid(row=row_num, column=1, pady=5)
     row_num += 1
 
