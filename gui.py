@@ -1,9 +1,7 @@
-import tkinter as tk
 from dodaj_wydatek_gui import *
 from funkcje import *
-from class_BazaDanych import *
-from class_Button import CustomButton
-from class_Label import CustomLabel, CustomLabelMainManu
+from classes.class_Button import CustomButton
+from classes.class_Label import CustomLabelMainManu
 
 
 window = tk.Tk()

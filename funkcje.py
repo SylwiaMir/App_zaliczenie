@@ -1,4 +1,4 @@
-from class_BazaDanych import BazaDanych
+from classes.class_BazaDanych import BazaDanych
 from datetime import datetime
 from dane_uzytkowe import *
 def wybor_daty():

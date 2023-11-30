@@ -1,12 +1,11 @@
 import tkinter as tk
 import tkcalendar
 from tkinter import ttk
-from class_BazaDanych import *
-from tkcalendar import DateEntry
+from classes.class_BazaDanych import *
 from tkinter import messagebox
-from class_Button import CustomButton
-from class_Label import CustomLabel
-from class_Entry import CustomEntry
+from classes.class_Button import CustomButton
+from classes.class_Label import CustomLabel
+from classes.class_Entry import CustomEntry
 
 def dodaj_wydatek_gui():
     def dodaj_do_bazy():
@@ -82,6 +81,7 @@ def dodaj_wydatek_gui():
 
     powrot_button = CustomButton(frame, text="Powrót", command=powrot)
     powrot_button.grid(row=9, column=0, pady=5)
+
 
     root.mainloop()
 
