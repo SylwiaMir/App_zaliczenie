@@ -37,10 +37,10 @@ class BazaDanych:
         self.bd_rozlacz()
         return rows
 
-    def dodaj_dane(self, nazwa, kwota, data, katgoria):
+    def dodaj_dane(self, nazwa, kwota, data, kategoria):
         self.bd_polacz()
         self.cursor.execute("INSERT INTO wydatki (nazwa,kwota,data,kategoria) VALUES (?,?,?,?)",
-                            (nazwa, kwota, data, katgoria))
+                            (nazwa, kwota, data, kategoria))
         self.connection.commit()
         self.bd_rozlacz()
 
