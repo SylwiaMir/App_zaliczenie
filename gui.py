@@ -7,7 +7,7 @@ from classes.class_Label import CustomLabelMainManu
 
 window = tk.Tk()
 window.title("Ogarniam wydatki")
-window.geometry("670x460")
+window.geometry("770x660")
 window.configure(bg='#333333')
 
 

@@ -18,3 +18,12 @@ class CustomLabel(tk.Label):
             background='#333333',
             font=('Agenor Neue', 16,)
         )
+
+class CustomLabelSmall(tk.Label):
+    def __init__(self, master=None, **kwargs):
+        tk.Label.__init__(self, master, **kwargs)
+        self.configure(
+            foreground='#04BFBF',
+            background='#333333',
+            font=('Agenor Neue', 10,)
+        )

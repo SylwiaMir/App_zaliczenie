@@ -1,4 +1,5 @@
 import sqlite3
+import calendar
 from datetime import datetime
 from dane_uzytkowe import *
 
@@ -78,6 +79,8 @@ class BazaDanych:
 
     def sortuj_wg_miesiaca(self, rok, miesiac):
         self.bd_polacz()
+
+        #dni_w_miesiacu = calendar.monthrange(rok, miesiac)[1]
         pierwszy_dzien_miesiaca = f'{rok:04d}-{miesiac:02d}-01'
         ostatni_dzien_miesiaca = f'{rok:04d}-{miesiac:02d}-32'  # tworze str w formacie RRRR-MM-DD
         self.cursor.execute("SELECT * FROM wydatki WHERE data BETWEEN ? AND ? ORDER BY data",

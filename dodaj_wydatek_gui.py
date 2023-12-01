@@ -41,26 +41,24 @@ def dodaj_wydatek_gui():
 
     root = tk.Tk()
     root.title("Dodaj Wydatek")
-    root.geometry("670x460")
+    root.geometry("770x660")
     root.configure(bg='#333333')
 
     frame = tk.Frame(root, background='#333333')
     frame.pack(pady=15)
 
-    nazwa_label = CustomLabel(frame,text="Nazwa sklepu:")
-    nazwa_label.grid(row=0, column=0, pady=1)
+    #Nazwy nad polami entry/date/combobox
+    CustomLabel(frame,text="Nazwa sklepu:").grid(row=0, column=0, pady=1)
+    CustomLabel(frame, text="Kwota paragonu:").grid(row=2, column=0, pady=1)
+    CustomLabel(frame, text="Data:").grid(row=4, column=0, pady=0)
+    CustomLabel(frame, text="Wybierz kategorie:").grid(row=6, column=0, pady=0)
+
 
     nazwa_entry = CustomEntry(frame)
     nazwa_entry.grid(row=1, column=0, pady=5)
 
-    kwota_label = CustomLabel(frame, text="Kwota paragonu:")
-    kwota_label.grid(row=2, column=0, pady=1)
-
     kwota_entry = CustomEntry(frame)
     kwota_entry.grid(row=3, column=0, pady=5)
-
-    data_label = CustomLabel(frame, text="Data:")
-    data_label.grid(row=4, column=0, pady=0)
 
     data_entry = tkcalendar.DateEntry(frame, width=27, background='#04BFBF', foreground='#333333', borderwidth=5,
                            date_pattern='yyyy-mm-dd')
@@ -68,19 +66,15 @@ def dodaj_wydatek_gui():
 
     kategorie_list = ['wydatki podstawowe', 'dom i rachunki', 'rozrywka i podróże', 'zdrowie i uroda',
                       'odzież i obuwie','pozostałe']
-    kategorie_label = CustomLabel(frame, text="Wybierz kategorie:")
-    kategorie_label.grid(row=6, column=0, pady=0)
 
     kategorie_combobox = ttk.Combobox(frame, values=kategorie_list, font=('Agenor Neue', 12),
                                          width=13, justify='center')
     kategorie_combobox.set(' ')
     kategorie_combobox.grid(row=7, column=0, pady=(5,30))
 
-    dodaj_button = CustomButton(frame, text="Dodaj", command=dodaj_do_bazy)
-    dodaj_button.grid(row=8, column=0, columnspan=2, pady=5)
-
-    powrot_button = CustomButton(frame, text="Powrót", command=powrot)
-    powrot_button.grid(row=9, column=0, pady=5)
+    #przyciski dodaj/powrót
+    CustomButton(frame, text="Dodaj", command=dodaj_do_bazy).grid(row=8, column=0, columnspan=2, pady=5)
+    CustomButton(frame, text="Powrót", command=powrot).grid(row=9, column=0, pady=5)
 
 
     root.mainloop()
