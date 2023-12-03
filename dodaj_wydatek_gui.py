@@ -67,13 +67,13 @@ def dodaj_wydatek_gui():
     kategorie_list = ['wydatki podstawowe', 'dom i rachunki', 'rozrywka i podróże', 'zdrowie i uroda',
                       'odzież i obuwie','pozostałe']
 
-    kategorie_combobox = ttk.Combobox(frame, values=kategorie_list, font=('Agenor Neue', 12),
-                                         width=13, justify='center')
+    kategorie_combobox = ttk.Combobox(frame, values=kategorie_list, font=('Arial', 12),
+                                         width=18, justify='center')
     kategorie_combobox.set(' ')
     kategorie_combobox.grid(row=7, column=0, pady=(5,30))
 
     #przyciski dodaj/powrót
-    CustomButton(frame, text="Dodaj", command=dodaj_do_bazy).grid(row=8, column=0, columnspan=2, pady=5)
+    CustomButton(frame, text="Dodaj", command=dodaj_do_bazy).grid(row=8, column=0, pady=5)
     CustomButton(frame, text="Powrót", command=powrot).grid(row=9, column=0, pady=5)
 
 

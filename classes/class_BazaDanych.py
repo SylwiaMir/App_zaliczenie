@@ -106,3 +106,17 @@ class BazaDanych:
         suma = self.cursor.fetchone()[0]
         self.bd_rozlacz()
         return suma if suma is not None else 0
+    def suma_wszystkich(self):
+        self.bd_polacz()
+        self.cursor.execute("SELECT SUM(kwota) FROM wydatki")
+        suma = self.cursor.fetchone()[0]
+        self.bd_rozlacz()
+        return suma
+    def wyswietl_wg_id(self,id):
+        self.bd_polacz()
+        id=id
+        self.cursor.execute("SELECT * FROM wydatki WHERE id = ?",(id,))
+        dane = self.cursor.fetchone()
+        self.bd_rozlacz()
+        return dane if dane is not None else {}
+

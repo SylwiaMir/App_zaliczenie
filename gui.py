@@ -1,5 +1,7 @@
 from dodaj_wydatek_gui import *
 from pokaz_wydatki_gui import *
+from edytuj_wydatki_gui import *
+from suma_wydatkow_gui import *
 from funkcje import *
 from classes.class_Button import CustomButton
 from classes.class_Label import CustomLabelMainManu
@@ -26,9 +28,8 @@ main_frame.pack(side=tk.LEFT, padx=20, pady=20)
 menu_buttons = [
     ("Dodaj wydatek", dodaj_wydatek_gui),
     ("Pokaż wydatki", pokaz_wydatki_gui),
-    ("Edytuj wydatki", edytuj_wydatki),
-    ("Sortowanie", sortuj_wg_miesiaca_menu),
-    ("Suma wydatków", sortuj_wg_miesiaca_menu),
+    ("Edytuj wydatki", edytuj_wydatki_gui),
+    ("Suma wydatków", suma_wydatkow_gui),
     ("Wyjście", window.destroy)]
 
 row_num = 1
