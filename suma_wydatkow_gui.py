@@ -158,4 +158,4 @@ def suma_wydatkow_gui():
     root.mainloop()
 
 
-suma_wydatkow_gui()
+#suma_wydatkow_gui()

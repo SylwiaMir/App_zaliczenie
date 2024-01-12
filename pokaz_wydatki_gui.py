@@ -172,4 +172,4 @@ def pokaz_wydatki_gui():
 
     root.mainloop()
 
-pokaz_wydatki_gui()
+#pokaz_wydatki_gui()

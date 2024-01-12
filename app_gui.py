@@ -30,6 +30,7 @@ menu_buttons = [
     ("Pokaż wydatki", pokaz_wydatki_gui),
     ("Edytuj wydatki", edytuj_wydatki_gui),
     ("Suma wydatków", suma_wydatkow_gui),
+    ("Wykresy", wykresy),
     ("Wyjście", window.destroy)]
 
 row_num = 1
