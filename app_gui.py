@@ -15,22 +15,16 @@ window.configure(bg='#333333')
 
 main_manu = tk.Frame(window, background='#333333')
 main_manu.configure(width=220, height=740)
-main_manu.pack(side=tk.LEFT, padx=15, pady=15)
+main_manu.pack(padx=15, pady=15)
 
 main_manu_label = CustomLabelMainManu(main_manu, text="Co robimy?")
 main_manu_label.grid(row=0, column=1, pady=(10,10))
-
-main_frame = tk.Frame(window, background='#333333', width=430, height=740) #bd=1, relief=tk.SOLID
-main_frame.pack(side=tk.LEFT, padx=20, pady=20)
-
-
 
 menu_buttons = [
     ("Dodaj wydatek", dodaj_wydatek_gui),
     ("Pokaż wydatki", pokaz_wydatki_gui),
     ("Edytuj wydatki", edytuj_wydatki_gui),
     ("Suma wydatków", suma_wydatkow_gui),
-    ("Wykresy", wykresy),
     ("Wyjście", window.destroy)]
 
 row_num = 1

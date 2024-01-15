@@ -255,5 +255,3 @@ def suma_z_miesiaca_menu():
     nazwa_miesiaca = get_nazwa_miesiaca(miesiac)
 
     print(f"Wydana kwota z miesiąca {nazwa_miesiaca} to: {suma}zł")
-def wykresy():
-    print("Tu będzie funkcja z biblioteki Matplotlib")
