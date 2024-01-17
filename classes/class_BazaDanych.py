@@ -1,7 +1,4 @@
 import sqlite3
-import calendar
-from datetime import datetime
-from dane_uzytkowe import *
 
 
 class BazaDanych:

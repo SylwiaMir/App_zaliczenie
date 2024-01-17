@@ -2,7 +2,6 @@ from dodaj_wydatek_gui import *
 from pokaz_wydatki_gui import *
 from edytuj_wydatki_gui import *
 from suma_wydatkow_gui import *
-from funkcje import *
 from classes.class_Button import CustomButton
 from classes.class_Label import CustomLabelMainManu
 
