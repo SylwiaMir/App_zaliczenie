@@ -6,6 +6,7 @@ from tkinter import messagebox
 from classes.class_Button import CustomButton
 from classes.class_Label import CustomLabelSmall, CustomLabel
 from classes.class_Entry import CustomEntrySmall
+from datetime import datetime
 
 def pokaz_wydatki_gui():
     def zaznaczenie_w_tabeli(event):
@@ -75,12 +76,21 @@ def pokaz_wydatki_gui():
 
         data_koncowa = data_koncowa_dateentry.get()
 
-        sortowane_dane = bazadanych.sortuj_wg_zakresu_dat(data_poczatkowa, data_koncowa)
+        try:
+            datetime.strptime(data_poczatkowa, '%Y-%m-%d')
+            datetime.strptime(data_koncowa, '%Y-%m-%d')
+        except ValueError:
+            messagebox.showerror("Błąd", "Nieprawidłowy format daty. Użyj formatu YYYY-MM-DD.")
 
-        for item in table.get_children():
-            table.delete(item)
-        for row in sortowane_dane:
-            table.insert('','end', values=row)
+        if data_poczatkowa <= data_koncowa:
+            sortowane_dane = bazadanych.sortuj_wg_zakresu_dat(data_poczatkowa, data_koncowa)
+
+            for item in table.get_children():
+                table.delete(item)
+            for row in sortowane_dane:
+                table.insert('', 'end', values=row)
+        else:
+            messagebox.showerror("Błąd", "Data początkowa nie może być późniejsza niż data końcowa.")
 
     def powrot():
         root.destroy()
@@ -115,7 +125,7 @@ def pokaz_wydatki_gui():
     rok_label = CustomLabelSmall(pokaz_wydatki_frame, text='Wpisz rok')
     rok_label.grid(row=3, column=3, padx=(5, 0))
 
-    default_year = "2023"
+    default_year = "2024"
     rok_entry = CustomEntrySmall(pokaz_wydatki_frame)
     rok_entry.grid(row=3, column=4, padx=(0, 20), pady=10)
     rok_entry.insert(0, default_year)
@@ -172,4 +182,4 @@ def pokaz_wydatki_gui():
 
     root.mainloop()
 
-#pokaz_wydatki_gui()
+pokaz_wydatki_gui()

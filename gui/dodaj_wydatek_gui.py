@@ -16,7 +16,8 @@ def dodaj_wydatek_gui():
             kwota = float(kwota_str)
             data = data_entry.get_date().strftime("%Y-%m-%d")
             kategoria = kategorie_combobox.get()
-            if kategoria in kategorie_list and isinstance(kwota,float):
+
+            if kategoria in kategorie_list and isinstance(kwota,float) and kwota > 0 and nazwa_wydatku != None and nazwa_wydatku != "":
                 bazadanych.dodaj_dane(nazwa_wydatku, kwota, data, kategoria)
                 print(f"Dodano nowe dane: {nazwa_wydatku},{kwota},{data},{kategoria}")
                 tk.messagebox.showinfo("Dodano dane", f"""{nazwa_wydatku}
@@ -24,16 +25,21 @@ def dodaj_wydatek_gui():
 {data}
 {kategoria}""")
                 root.destroy()
+            elif nazwa_wydatku == "" or nazwa_wydatku is None:
+                tk.messagebox.showwarning("Błąd", "Brak nazwy!")
 
-            elif isinstance(kwota,float):
+            elif kwota < 0:
+                tk.messagebox.showwarning("Błąd", "Kwota paragonu nie może być liczbą ujemną!")
+            elif kwota == 0:
+                tk.messagebox.showwarning("Błąd", "Kwota paragonu nie może być zerem!")
+
+            elif isinstance(kwota, float):
                 tk.messagebox.showwarning("Błąd", "Nieprawidłowa kategoria!")
+
             else:
                 tk.messagebox.showwarning("Błąd", "Nieprawidłowa kwota!")
         except:
-            tk.messagebox.showwarning("Błąd", "Nieprawidłowa kwota!")
-
-
-
+            tk.messagebox.showwarning("Błąd", "Niepoprawne dane!")
 
     def powrot():
         root.destroy()
