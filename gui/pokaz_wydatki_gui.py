@@ -36,13 +36,13 @@ def pokaz_wydatki_gui():
             try:
                 rok = rok_entry.get()
                 if len(rok) != 4:
-                    tk.messagebox.showerror('Błąd', "Wybrano nieprawidłową wartość.")
+                    tk.messagebox.showerror('Błąd', "Wybrano niepoprawny rok!")
                     break
                 else:
                     rok = int(rok)
                 break
             except ValueError:
-                tk.messagebox.showerror('Błąd', "Wybrano nieprawidłową wartość.")
+                tk.messagebox.showerror('Błąd', "Wybrano niepoprawny rok!")
                 continue
         dict_miesiac = {'01': 'styczeń', '02': 'luty', '03': 'marzec', '04': 'kwiecień', '05': 'maj', '06': 'czerwiec',
                         '07': 'lipiec', '08': 'sierpień', '09': 'wrzesień', '10': 'październik', '11': 'listopad',
