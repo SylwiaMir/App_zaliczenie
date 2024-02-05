@@ -67,7 +67,7 @@ def edytuj_wydatki_gui():
                 kwota = float(kwota_str)
                 data = nowa_data_entry.get_date().strftime("%Y-%m-%d")
                 kategoria = nowa_kategoria_combobox.get()
-                if kategoria in kategorie_list and isinstance(kwota, float):
+                if kategoria in kategorie_list and isinstance(kwota, float) and kwota > 0 and nazwa_wydatku != None and nazwa_wydatku != "":
                     bazadanych.update_nazwa(edytuj_id, nazwa_wydatku)
                     bazadanych.update_kwota(edytuj_id, kwota)
                     bazadanych.update_data(edytuj_id,data)
@@ -78,13 +78,18 @@ def edytuj_wydatki_gui():
 {data}
 {kategoria}""")
                     root.destroy()
-
+                elif nazwa_wydatku == "" or nazwa_wydatku is None:
+                    tk.messagebox.showwarning("Błąd", "Brak nazwy!")
+                elif kwota < 0:
+                    tk.messagebox.showwarning("Błąd", "Kwota paragonu nie może być liczbą ujemną!")
+                elif kwota == 0:
+                    tk.messagebox.showwarning("Błąd", "Kwota paragonu nie może być zerem!")
                 elif isinstance(kwota, float):
                     tk.messagebox.showwarning("Błąd", "Nieprawidłowa kategoria!")
                 else:
                     tk.messagebox.showwarning("Błąd", "Nieprawidłowa kwota!")
             except:
-                tk.messagebox.showwarning("Błąd", "Nieprawidłowa kwota!")
+                tk.messagebox.showwarning("Błąd", "Niepoprawne dane!")
 
 
         zatwierdz_button = CustomButton(frame, text="Zatwierdź", command=nadpisz_dane)
@@ -119,4 +124,4 @@ def edytuj_wydatki_gui():
     root.mainloop()
 
 
-#edytuj_wydatki_gui()
+edytuj_wydatki_gui()
