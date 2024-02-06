@@ -17,7 +17,7 @@ main_manu.configure(width=220, height=740)
 main_manu.pack(padx=15, pady=15)
 
 main_manu_label = CustomLabelMainManu(main_manu, text="Co robimy?")
-main_manu_label.grid(row=0, column=1, pady=(10,10))
+main_manu_label.grid(row=0, column=1, pady=(10, 10))
 
 menu_buttons = [
     ("Dodaj wydatek", dodaj_wydatek_gui),
