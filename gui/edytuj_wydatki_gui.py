@@ -150,4 +150,4 @@ def edytuj_wydatki_gui():
 
     root.mainloop()
 
-edytuj_wydatki_gui()
+#edytuj_wydatki_gui()
