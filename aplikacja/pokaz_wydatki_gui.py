@@ -1,11 +1,11 @@
 import tkinter as tk
 import tkcalendar
 from tkinter import ttk
-from classes.class_BazaDanych import *
+from aplikacja.classes.class_BazaDanych import *
 from tkinter import messagebox
-from classes.class_Button import CustomButton
-from classes.class_Label import CustomLabelSmall, CustomLabel
-from classes.class_Entry import CustomEntrySmall
+from aplikacja.classes.class_Button import CustomButton
+from aplikacja.classes.class_Label import CustomLabelSmall, CustomLabel
+from aplikacja.classes.class_Entry import CustomEntrySmall
 from datetime import datetime
 
 def pokaz_wydatki_gui():
@@ -43,7 +43,7 @@ def pokaz_wydatki_gui():
                 break
             except ValueError:
                 tk.messagebox.showerror('Błąd', "Wybrano niepoprawny rok!")
-                continue
+                break
         dict_miesiac = {'01': 'styczeń', '02': 'luty', '03': 'marzec', '04': 'kwiecień', '05': 'maj', '06': 'czerwiec',
                         '07': 'lipiec', '08': 'sierpień', '09': 'wrzesień', '10': 'październik', '11': 'listopad',
                         '12': 'grudzień'}

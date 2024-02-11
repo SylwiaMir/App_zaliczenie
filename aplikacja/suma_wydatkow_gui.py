@@ -1,11 +1,12 @@
 import tkinter as tk
 import tkcalendar
 from tkinter import ttk
-from classes.class_BazaDanych import *
+from aplikacja.classes.class_BazaDanych import *
 from tkinter import messagebox
-from classes.class_Button import CustomButton
-from classes.class_Label import CustomLabelSmall, CustomLabel
-from classes.class_Entry import CustomEntrySmall
+from aplikacja.classes.class_Button import CustomButton
+from aplikacja.classes.class_Label import CustomLabelSmall, CustomLabel
+from aplikacja.classes.class_Entry import CustomEntrySmall
+from datetime import datetime
 
 def suma_wydatkow_gui():
     def suma_wydatkow():
@@ -34,13 +35,26 @@ def suma_wydatkow_gui():
         data_poczatkowa = data_poczatkowa_dateentry.get()
         data_koncowa = data_koncowa_dateentry.get()
 
-        suma_wydatkow = bazadanych.suma_z_zakresu(data_poczatkowa, data_koncowa)
+        try:
+            datetime.strptime(data_poczatkowa, '%Y-%m-%d')
+            datetime.strptime(data_koncowa, '%Y-%m-%d')
+        except ValueError:
+            messagebox.showerror("Błąd", "Nieprawidłowy format daty. Użyj formatu YYYY-MM-DD.")
 
-        suma_lbl = CustomLabel(frame2, text="Suma wydatków\nz wybranego okresu:")
-        suma_lbl.grid(row=6, column=0, columnspan=5, pady=(20,5))
+        if data_poczatkowa <= data_koncowa:
+            suma_wydatkow = bazadanych.suma_z_zakresu(data_poczatkowa, data_koncowa)
 
-        suma_wynik = CustomLabel(frame2, text=f"{suma_wydatkow} zł")
-        suma_wynik.grid(row=7, column=0, columnspan=5, pady=5)
+            suma_lbl = CustomLabel(frame2, text="Suma wydatków\nz wybranego okresu:")
+            suma_lbl.grid(row=6, column=0, columnspan=5, pady=(20, 5))
+
+            suma_wynik = CustomLabel(frame2, text=f"{suma_wydatkow} zł")
+            suma_wynik.grid(row=7, column=0, columnspan=5, pady=5)
+
+        else:
+            messagebox.showerror("Błąd", "Data początkowa nie może być późniejsza niż data końcowa.")
+
+
+
 
     def suma_z_miesiaca():
 
@@ -53,14 +67,14 @@ def suma_wydatkow_gui():
             try:
                 rok = rok_entry.get()
                 if len(rok) != 4:
-                    tk.messagebox.showerror('Błąd', "Wybrano nieprawidłową wartość.")
+                    tk.messagebox.showerror('Błąd', "Wybrano niepoprawny rok!")
                     break
                 else:
                     rok = int(rok)
                 break
             except ValueError:
-                tk.messagebox.showerror('Błąd', "Wybrano nieprawidłową wartość.")
-                continue
+                tk.messagebox.showerror('Błąd', "Wybrano niepoprawny rok!")
+                break
         dict_miesiac = {'01': 'styczeń', '02': 'luty', '03': 'marzec', '04': 'kwiecień', '05': 'maj', '06': 'czerwiec',
                         '07': 'lipiec', '08': 'sierpień', '09': 'wrzesień', '10': 'październik', '11': 'listopad',
                         '12': 'grudzień'}
@@ -141,7 +155,7 @@ def suma_wydatkow_gui():
     rok_label = CustomLabelSmall(frame, text='Wpisz rok')
     rok_label.grid(row=3, column=3, padx=(5, 0))
 
-    default_year = "2023"
+    default_year = "2024"
     rok_entry = CustomEntrySmall(frame)
     rok_entry.grid(row=3, column=4, padx=(0, 20), pady=10)
     rok_entry.insert(0, default_year)
