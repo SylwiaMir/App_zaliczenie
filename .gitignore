@@ -1,0 +1,23 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# Katalogi środowiska wirtualnego Pythona
+venv/
+env/
+env_bak/
+
+# Katalogi tymczasowe
+__pycache__/
+
+# Pliki tymczasowe
+*.pyc
+*.pyo
+*.pyd
+
+# Pliki wygenerowane przez narzędzie do zarządzania zależnościami pip
+pip-log.txt
+requirements.txt
+
+# Katalog .idea
+.idea/
