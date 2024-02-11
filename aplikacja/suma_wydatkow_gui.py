@@ -1,11 +1,11 @@
 import tkinter as tk
 import tkcalendar
 from tkinter import ttk
-from aplikacja.classes.class_BazaDanych import *
+from classes.class_BazaDanych import *
 from tkinter import messagebox
-from aplikacja.classes.class_Button import CustomButton
-from aplikacja.classes.class_Label import CustomLabelSmall, CustomLabel
-from aplikacja.classes.class_Entry import CustomEntrySmall
+from classes.class_Button import CustomButton
+from classes.class_Label import CustomLabelSmall, CustomLabel
+from classes.class_Entry import CustomEntrySmall
 from datetime import datetime
 
 def suma_wydatkow_gui():

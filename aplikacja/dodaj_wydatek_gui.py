@@ -1,11 +1,11 @@
 import tkinter as tk
 import tkcalendar
 from tkinter import ttk
-from aplikacja.classes.class_BazaDanych import *
+from classes.class_BazaDanych import *
 from tkinter import messagebox
-from aplikacja.classes.class_Button import CustomButton
-from aplikacja.classes.class_Label import CustomLabel
-from aplikacja.classes.class_Entry import CustomEntry
+from classes.class_Button import CustomButton
+from classes.class_Label import CustomLabel
+from classes.class_Entry import CustomEntry
 
 def dodaj_wydatek_gui():
     def dodaj_do_bazy():
