@@ -5,12 +5,12 @@
 * [Opis](#opis)
 * [Użyte technologie](#użyte-technologie)
 * [Wykorzystane biblioteki](#wykorzystane-biblioteki)
-* [Uruchomienie](#uruchomienie)
+* [Uruchomienie aplikacji](#uruchomienie-aplikacji)
 * [Użytkowanie](#użytkowanie)
 * [Autor](#autor)
 
 ## Opis
-Celem projektu było stworzenie aplikacji do zarządzania swoimi wydatkami oraz przetestowanie jej funkcjonalności (testy manualne). Aplikacja ta to prosty interfejs graficzny użytkownika (GUI) napisany w języku Python przy użyciu biblioteki _tkinter_, _sqlite3_. Program umożliwia użytkownikowi zarządzanie swoimi wydatkami poprzez dodawanie nowych wydatków, przeglądanie istniejących wydatków, edycję oraz obliczanie sumy wszystkich wydatków.
+Celem projektu było stworzenie aplikacji do zarządzania swoimi wydatkami oraz przetestowanie jej funkcjonalności (testy manualne). Aplikacja ta to prosty interfejs graficzny użytkownika (GUI) napisany w języku Python przy użyciu biblioteki _tkinter_, _sqlite3_, _tkcalendar_. Program umożliwia użytkownikowi zarządzanie swoimi wydatkami poprzez dodawanie nowych wydatków, przeglądanie istniejących wydatków, edycję oraz obliczanie sumy wszystkich wydatków.
 
 ## Użyte technologie
 - Windows 10 Pro ver.22H2
@@ -22,17 +22,21 @@ Celem projektu było stworzenie aplikacji do zarządzania swoimi wydatkami oraz 
 - tkcalendar
 - sqlite3
 
-## Uruchomienie
-Sklonuj repozytorium:
+## Uruchomienie aplikacji
+Sklonuj lub ściągnij ZIP z repozytorium:
 `https://github.com/SylwiaMir/App_zaliczenie.git`
 
-Zainstaluj Python i wymagane biblioteki _tkinter_, _tkcalendar_ i _sqlite3_.
+Sprawdź czy w systemie jest zainstalowany Python. Jeżeli nie dla sytemu Windows zainstaluj Python z Microsoft Store.
 
 Przejdź w sklonowanym repozytorium do katalogu z aplikacją:
 `..\App_zaliczenie\aplikacja`
 
+Zainstaluj wymagane biblioteki z pliku o nazwie _requirements.txt_ wpisując w cmd następującą komende:
+
+`pip install -r requirements.txt`
 
 Uruchom z poziomu katalogu _aplikacja_ wiersz polecenia i uruchom aplikacje wpisując następującą komende:
+
 `python app_gui.py`
 
 ## Użytkowanie
