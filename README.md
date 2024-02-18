@@ -29,13 +29,13 @@ Sklonuj lub ściągnij ZIP z repozytorium:
 Sprawdź czy w systemie jest zainstalowany Python. Jeżeli nie dla sytemu Windows zainstaluj Python z Microsoft Store.
 
 Przejdź w sklonowanym repozytorium do katalogu z aplikacją:
-`..\App_zaliczenie\aplikacja`
+`..\App_zaliczenie`
 
 Zainstaluj wymagane biblioteki z pliku o nazwie _requirements.txt_ wpisując w cmd następującą komende:
 
 `pip install -r requirements.txt`
 
-Uruchom z poziomu katalogu _aplikacja_ wiersz polecenia i uruchom aplikacje wpisując następującą komende:
+Uruchom z poziomu katalogu `..\App_zaliczenie\aplikacja` wiersz polecenia i uruchom aplikacje wpisując następującą komende:
 
 `python app_gui.py`
 
