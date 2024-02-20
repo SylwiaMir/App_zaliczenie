@@ -11,7 +11,6 @@ window.title("Ogarniam wydatki")
 window.geometry("770x660")
 window.configure(bg='#333333')
 
-
 main_manu = tk.Frame(window, background='#333333')
 main_manu.configure(width=220, height=740)
 main_manu.pack(padx=15, pady=15)
@@ -31,7 +30,5 @@ for text, command in menu_buttons:
     button = CustomButton(master=main_manu, text=text, command=command)
     button.grid(row=row_num, column=1, pady=5)
     row_num += 1
-
-
 
 window.mainloop()

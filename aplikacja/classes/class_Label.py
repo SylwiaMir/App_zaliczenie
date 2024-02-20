@@ -1,6 +1,5 @@
 import tkinter as tk
 
-
 class CustomLabelMainManu(tk.Label):
     def __init__(self, master=None, **kwargs):
         tk.Label.__init__(self, master, **kwargs)
@@ -9,7 +8,6 @@ class CustomLabelMainManu(tk.Label):
             background='#333333',
             font=('Agenor Neue', 20,)
         )
-
 class CustomLabel(tk.Label):
     def __init__(self, master=None, **kwargs):
         tk.Label.__init__(self, master, **kwargs)
@@ -18,7 +16,6 @@ class CustomLabel(tk.Label):
             background='#333333',
             font=('Agenor Neue', 16,)
         )
-
 class CustomLabelSmall(tk.Label):
     def __init__(self, master=None, **kwargs):
         tk.Label.__init__(self, master, **kwargs)

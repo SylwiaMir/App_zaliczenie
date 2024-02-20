@@ -20,7 +20,6 @@ def edytuj_wydatki_gui():
             wybrane_id = bazadanych.wyswietl_wg_id(edytuj_id)
 
             if wybrane_id:
-                # Znaleziono dane dla podanego ID
                 for widget in frame.winfo_children():
                     widget.destroy()
                 wybrane_dane = CustomLabel(frame, text=wybrane_id)
@@ -67,7 +66,6 @@ def edytuj_wydatki_gui():
                 powrot_button.grid(row=12, column=0, columnspan=2, padx=35, pady=10, sticky='n')
 
             else:
-                # Brak danych dla podanego ID
                 tk.messagebox.showinfo("Informacja", "Brak danych dla podanego ID!")
                 root.destroy()
 
@@ -84,9 +82,8 @@ def edytuj_wydatki_gui():
                 kwota_str = nowa_kwota_entry.get().replace(',', '.')
                 kwota = float(kwota_str)
                 data = nowa_data_entry.get_date().strftime("%Y-%m-%d")
-                today = datetime.date.today()  # Dzisiejsza data
-                today = today.strftime("%Y-%m-%d") # Zmiana formatu z .datetime na str dla porownania dat
-
+                today = datetime.date.today()
+                today = today.strftime("%Y-%m-%d")
 
                 kategoria = nowa_kategoria_combobox.get()
 
@@ -117,14 +114,11 @@ def edytuj_wydatki_gui():
                 tk.messagebox.showwarning("Błąd", "Niepoprawne dane!")
 
 
-
-
         zatwierdz_button = CustomButton(frame, text="Zatwierdź", command=nadpisz_dane)
         zatwierdz_button.grid(row=11, column=0, columnspan=2, pady=10)
 
     def powrot():
         root.destroy()
-
 
     root = tk.Tk()
     root.title("Edytuj wydatki")
@@ -145,9 +139,5 @@ def edytuj_wydatki_gui():
     powrot_button = CustomButton(frame, text='Powrót', command=powrot)
     powrot_button.grid(row=12, column=0, columnspan=2, padx=35, pady=10, sticky='n')
 
-
-
-
     root.mainloop()
 
-#edytuj_wydatki_gui()

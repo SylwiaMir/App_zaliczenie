@@ -10,18 +10,14 @@ from datetime import datetime
 
 def pokaz_wydatki_gui():
     def zaznaczenie_w_tabeli(event):
-        selected_item = table.focus()  # Pobranie zaznaczonego elementu
-        values = table.item(selected_item, 'values')  # Pobranie wartości zaznaczonego elementu
+        selected_item = table.focus()
+        values = table.item(selected_item, 'values')
         print("Selected Item:", values)
     def pokaz_wszystkie():
         bazadanych = BazaDanych("wydatki.db")
         bazadanych.utworz_bd()
 
         aktualne_dane = bazadanych.wyswietl_dane()
-        # ta czesc kodu wypisuje wydatki na konsoli
-        #print("Aktualne wydatki:")
-        # for row in aktualne_dane:
-        #      print(row)
 
         for item in table.get_children():
             table.delete(item)
@@ -57,10 +53,6 @@ def pokaz_wydatki_gui():
 
 
         sortowane_dane = bazadanych.sortuj_wg_miesiaca(rok, miesiac)
-
-        # ta czesc kodu wypisuje wydatki na konsoli
-        # for row in sortowane_dane:
-        #     print(row)
 
         for item in table.get_children():
             table.delete(item)
@@ -131,8 +123,6 @@ def pokaz_wydatki_gui():
     rok_entry.insert(0, default_year)
 
 
-
-
     wybierz_button = CustomButton(pokaz_wydatki_frame, text="Pokaż z miesiąca", command=pokaz_wg_miesiąca)
     wybierz_button.grid(row=4, column=3, columnspan=2, padx=(5,10),pady=(0,10))
 
@@ -181,5 +171,3 @@ def pokaz_wydatki_gui():
     powrot_button.grid(row=1, column=0, columnspan=3, padx=35, pady=10, sticky='e')
 
     root.mainloop()
-
-#pokaz_wydatki_gui()

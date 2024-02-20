@@ -24,8 +24,6 @@ def suma_wydatkow_gui():
         suma_wynik = CustomLabel(frame2, text=f"{suma_wydatkow} zł")
         suma_wynik.grid(row=7, column=0, columnspan=5, pady=5)
 
-
-
     def suma_wg_zakresu():
         for widget in frame2.winfo_children():
             widget.destroy()
@@ -52,8 +50,6 @@ def suma_wydatkow_gui():
 
         else:
             messagebox.showerror("Błąd", "Data początkowa nie może być późniejsza niż data końcowa.")
-
-
 
 
     def suma_z_miesiaca():
@@ -111,11 +107,9 @@ def suma_wydatkow_gui():
     frame2 = tk.Frame(root, bg='#333333')
     frame2.pack(pady=15)
 
-    #wyświetl wszystkie wydatki
     wszystkie_wydatki = CustomButton(frame, text="Suma wszystkich", command=suma_wydatkow)
     wszystkie_wydatki.grid(row=4, column=0, padx=(20, 30), pady=(0, 10))
 
-    #wyświetl wydatki z zakresu dat
     sort_data_label = CustomLabel(frame, text="Suma wydatków\nwg daty")
     sort_data_label.grid(row=0, column=1, columnspan=2, padx=(5, 30), pady=(25, 0))
 
@@ -139,8 +133,6 @@ def suma_wydatkow_gui():
     wybierz_button2.grid(row=4, column=1, columnspan=2, padx=(5, 10), pady=(0, 10))
 
 
-
-    #wyświetl wydatki z wybranego miesiąca
     sort_miesiac_label = CustomLabel(frame, text="Suma wydatków\nz wybranego miesiąca")
     sort_miesiac_label.grid(row=0, column=3, columnspan=2, padx=(5, 10), pady=(25,0))
 
@@ -170,6 +162,3 @@ def suma_wydatkow_gui():
     powrot_button.pack(side="bottom", pady=(0, 40),)
 
     root.mainloop()
-
-
-#suma_wydatkow_gui()

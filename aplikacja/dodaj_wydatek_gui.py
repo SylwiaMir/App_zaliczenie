@@ -44,7 +44,6 @@ def dodaj_wydatek_gui():
     def powrot():
         root.destroy()
 
-
     root = tk.Tk()
     root.title("Dodaj Wydatek")
     root.geometry("770x660")
@@ -53,12 +52,10 @@ def dodaj_wydatek_gui():
     frame = tk.Frame(root, background='#333333')
     frame.pack(pady=15)
 
-    #Nazwy nad polami entry/date/combobox
     CustomLabel(frame,text="Nazwa sklepu:").grid(row=0, column=0, pady=1)
     CustomLabel(frame, text="Kwota paragonu:").grid(row=2, column=0, pady=1)
     CustomLabel(frame, text="Data:").grid(row=4, column=0, pady=0)
     CustomLabel(frame, text="Wybierz kategorie:").grid(row=6, column=0, pady=0)
-
 
     nazwa_entry = CustomEntry(frame)
     nazwa_entry.grid(row=1, column=0, pady=5)
@@ -78,11 +75,7 @@ def dodaj_wydatek_gui():
     kategorie_combobox.set(' ')
     kategorie_combobox.grid(row=7, column=0, pady=(5,30))
 
-    #przyciski dodaj/powrót
     CustomButton(frame, text="Dodaj", command=dodaj_do_bazy).grid(row=8, column=0, pady=5)
     CustomButton(frame, text="Powrót", command=powrot).grid(row=9, column=0, pady=5)
 
-
     root.mainloop()
-
-#dodaj_wydatek_gui()
